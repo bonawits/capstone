@@ -37,17 +37,19 @@ export const Feed: React.FC = () => {
     null
   );
   const [isNewPostModalOpen, setIsNewPostModalOpen] = React.useState<boolean>(
-    true
+    false
   );
 
   return (
     <>
-      <NewPostModal
-        isOpen={isNewPostModalOpen}
-        onCancel={() => {
-          setIsNewPostModalOpen(false);
-        }}
-      />
+      {isNewPostModalOpen && (
+        <NewPostModal
+          isOpen={isNewPostModalOpen}
+          onCancel={() => {
+            setIsNewPostModalOpen(false);
+          }}
+        />
+      )}
       <DeleteModal
         isOpen={deletePostIndex !== null}
         onConfirm={() => {
