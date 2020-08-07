@@ -20,24 +20,15 @@ export const Tile: React.FC<TileProps> = ({ ...props }) => {
         <Box display="flex" alignItems="center">
           {createdAt}
         </Box>
-        <ButtonGroup spacing={4}>
-          <Button
-            leftIcon="edit"
-            variantColor="blue"
-            variant="outline"
-            onClick={onEdit}
-          >
-            Edit
-          </Button>
-          <Button
-            leftIcon="delete"
-            variantColor="red"
-            variant="outline"
-            onClick={onDelete}
-          >
-            Delete
-          </Button>
-        </ButtonGroup>
+
+        <Button
+          leftIcon="delete"
+          variantColor="red"
+          variant="outline"
+          onClick={onDelete}
+        >
+          Delete
+        </Button>
       </Box>
       <Box mb="1rem">
         <Image size="300px" src={attachmentUrl} />
