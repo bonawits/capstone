@@ -2,6 +2,7 @@ import React from "react";
 import { ThemeProvider, CSSReset } from "@chakra-ui/core";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Login } from "./components/Login";
+import { Feed } from "./components/Feed";
 
 const App: React.FC = () => {
   return (
@@ -14,7 +15,7 @@ const App: React.FC = () => {
               <Login />
             </Route>
             <Route path="/feed" exact>
-              <div>feed</div>
+              <Feed />
             </Route>
           </Switch>
         </Router>
