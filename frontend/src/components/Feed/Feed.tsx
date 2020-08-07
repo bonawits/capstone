@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Link, Heading } from "@chakra-ui/core";
+import { Box, Link, Heading, Button } from "@chakra-ui/core";
 import { Tile } from "../Tile";
 import { DeleteModal } from "../DeleteModal/DeleteModal";
 
@@ -53,12 +53,23 @@ export const Feed: React.FC = () => {
         display="flex"
         flexDirection="row"
         justifyContent="space-between"
+        alignItems="baseline"
         p="1rem"
         borderBottom="3px dashed black"
       >
         <Heading as="h1" size="sm">
           Username
         </Heading>
+        <Button
+          leftIcon="add"
+          variantColor="green"
+          variant="outline"
+          onClick={() => {
+            console.log("new post clicked");
+          }}
+        >
+          New Post
+        </Button>
         <Link
           onClick={() => {
             console.log("logout clicked");
