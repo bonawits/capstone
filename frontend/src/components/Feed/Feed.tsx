@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Link, Heading, Button } from "@chakra-ui/core";
 import { Tile } from "../Tile";
 import { DeleteModal } from "../DeleteModal/DeleteModal";
+import { NewPostModal } from "../NewPostModal";
 
 const mockPosts = [
   {
@@ -35,9 +36,18 @@ export const Feed: React.FC = () => {
   const [deletePostIndex, setDeletePostIndex] = React.useState<number | null>(
     null
   );
+  const [isNewPostModalOpen, setIsNewPostModalOpen] = React.useState<boolean>(
+    true
+  );
 
   return (
     <>
+      <NewPostModal
+        isOpen={isNewPostModalOpen}
+        onCancel={() => {
+          setIsNewPostModalOpen(false);
+        }}
+      />
       <DeleteModal
         isOpen={deletePostIndex !== null}
         onConfirm={() => {
@@ -65,7 +75,7 @@ export const Feed: React.FC = () => {
           variantColor="green"
           variant="outline"
           onClick={() => {
-            console.log("new post clicked");
+            setIsNewPostModalOpen(true);
           }}
         >
           New Post

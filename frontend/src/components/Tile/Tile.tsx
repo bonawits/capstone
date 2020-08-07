@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, ButtonGroup, Button, Image } from "@chakra-ui/core";
+import { Box, IconButton, Image } from "@chakra-ui/core";
 import { UserPost } from "../../types/UserPost";
 
 interface TileProps extends UserPost {
@@ -21,14 +21,15 @@ export const Tile: React.FC<TileProps> = ({ ...props }) => {
           {createdAt}
         </Box>
 
-        <Button
-          leftIcon="delete"
+        <IconButton
+          aria-label="Delete post"
+          icon="delete"
           variantColor="red"
           variant="outline"
           onClick={onDelete}
         >
           Delete
-        </Button>
+        </IconButton>
       </Box>
       <Box mb="1rem">
         <Image size="300px" src={attachmentUrl} />
