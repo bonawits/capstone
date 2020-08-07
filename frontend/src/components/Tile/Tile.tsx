@@ -8,7 +8,7 @@ interface TileProps extends UserPost {
 }
 
 export const Tile: React.FC<TileProps> = ({ ...props }) => {
-  const { postId, createdAt, caption, attachmentUrl, onEdit, onDelete } = props;
+  const { createdAt, caption, attachmentUrl, onDelete } = props;
   return (
     <Box maxWidth="350px" border="3px black solid" mt="2rem" p="1rem">
       <Flex justifyContent="space-between" alignItems="cwenter" mb="1rem">
