@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Link, Heading } from "@chakra-ui/core";
 import { Tile } from "../Tile";
+import { DeleteModal } from "../DeleteModal/DeleteModal";
 
 const mockPosts = [
   {
@@ -30,13 +31,24 @@ const editPost = (index: number) => {
   console.log(`post index ${index}`);
 };
 
-const deletePost = (index: number) => {
-  console.log(`delete index ${index}`);
-};
-
 export const Feed: React.FC = () => {
+  const [deletePostIndex, setDeletePostIndex] = React.useState<number | null>(
+    null
+  );
+
   return (
     <>
+      <DeleteModal
+        isOpen={deletePostIndex !== null}
+        onConfirm={() => {
+          console.log("delete confirm clicked");
+          setDeletePostIndex(null);
+        }}
+        onCancel={() => {
+          console.log("close delete modal clicked");
+          setDeletePostIndex(null);
+        }}
+      />
       <Box
         display="flex"
         flexDirection="row"
@@ -77,7 +89,7 @@ export const Feed: React.FC = () => {
               caption={post.caption}
               attachmentUrl={post.attachmentUrl}
               onEdit={() => editPost(index)}
-              onDelete={() => deletePost(index)}
+              onDelete={() => setDeletePostIndex(index)}
             />
           ))}
         </Box>
