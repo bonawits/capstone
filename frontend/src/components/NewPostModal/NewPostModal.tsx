@@ -12,8 +12,8 @@ import {
   Input,
   FormControl,
   FormLabel,
-  FormErrorMessage,
   FormHelperText,
+  Flex,
 } from "@chakra-ui/core";
 
 interface NewPostModalProps {
@@ -28,6 +28,10 @@ export const NewPostModal: React.FC<NewPostModalProps> = ({
   const maxCaptionLength = 60;
   const [caption, setCaption] = React.useState<string>("");
   const [captionLength, setCaptionLength] = React.useState<number>(0);
+  const [imageFile, setImageFile] = React.useState<File>();
+
+  console.log(imageFile);
+
   return (
     <Modal isOpen={isOpen} onClose={onCancel}>
       <ModalOverlay />
@@ -36,6 +40,21 @@ export const NewPostModal: React.FC<NewPostModalProps> = ({
         <ModalCloseButton />
         <ModalBody>
           <Box>
+            <Flex
+              mb="1rem"
+              border="1px solid #E2E8F0"
+              borderRadius=".25rem"
+              p="1rem"
+            >
+              <input
+                type="file"
+                name="file"
+                accept=".png,.jpeg,.jpg"
+                onChange={(event: any) => {
+                  setImageFile(event.target.files[0]);
+                }}
+              />
+            </Flex>
             <FormControl>
               <FormLabel htmlFor="caption">Caption</FormLabel>
               <Input
@@ -46,6 +65,7 @@ export const NewPostModal: React.FC<NewPostModalProps> = ({
                   setCaptionLength(event.target.value.length);
                 }}
                 maxLength={maxCaptionLength}
+                width="100%"
               />
               <FormHelperText id="email-helper-text">
                 {captionLength}/{maxCaptionLength}
@@ -62,6 +82,7 @@ export const NewPostModal: React.FC<NewPostModalProps> = ({
             onClick={() => {
               console.log("new post confirm");
             }}
+            isDisabled={captionLength === 0 || !imageFile}
           >
             Create post
           </Button>
