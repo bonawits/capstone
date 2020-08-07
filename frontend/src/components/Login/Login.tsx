@@ -1,18 +1,16 @@
 import React from "react";
-import { Box, Heading, Button } from "@chakra-ui/core";
+import { Flex, Box, Heading, Button } from "@chakra-ui/core";
 
 export const Login: React.FC = () => {
   return (
-    <Box
-      display="flex"
+    <Flex
       flexDir="column"
       alignItems="center"
       justifyContent="center"
       width="100%"
       height="100vh"
     >
-      <Box
-        display="flex"
+      <Flex
         flexDir="column"
         alignItems="center"
         justifyContent="center"
@@ -29,7 +27,7 @@ export const Login: React.FC = () => {
             Login
           </Button>
         </Box>
-      </Box>
-    </Box>
+      </Flex>
+    </Flex>
   );
 };

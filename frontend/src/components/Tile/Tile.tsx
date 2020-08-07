@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, IconButton, Image } from "@chakra-ui/core";
+import { Flex, Box, IconButton, Image } from "@chakra-ui/core";
 import { UserPost } from "../../types/UserPost";
 
 interface TileProps extends UserPost {
@@ -11,12 +11,7 @@ export const Tile: React.FC<TileProps> = ({ ...props }) => {
   const { postId, createdAt, caption, attachmentUrl, onEdit, onDelete } = props;
   return (
     <Box maxWidth="350px" border="3px black solid" mt="2rem" p="1rem">
-      <Box
-        display="flex"
-        justifyContent="space-between"
-        alignItems="cwenter"
-        mb="1rem"
-      >
+      <Flex justifyContent="space-between" alignItems="cwenter" mb="1rem">
         <Box display="flex" alignItems="center">
           {createdAt}
         </Box>
@@ -30,7 +25,7 @@ export const Tile: React.FC<TileProps> = ({ ...props }) => {
         >
           Delete
         </IconButton>
-      </Box>
+      </Flex>
       <Box mb="1rem">
         <Image size="300px" src={attachmentUrl} />
       </Box>

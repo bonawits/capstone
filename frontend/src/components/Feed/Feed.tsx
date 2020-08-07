@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Link, Heading, Button } from "@chakra-ui/core";
+import { Flex, Box, Link, Heading, Button } from "@chakra-ui/core";
 import { Tile } from "../Tile";
 import { DeleteModal } from "../DeleteModal/DeleteModal";
 import { NewPostModal } from "../NewPostModal";
@@ -59,8 +59,7 @@ export const Feed: React.FC = () => {
           setDeletePostIndex(null);
         }}
       />
-      <Box
-        display="flex"
+      <Flex
         flexDirection="row"
         justifyContent="space-between"
         alignItems="baseline"
@@ -87,9 +86,8 @@ export const Feed: React.FC = () => {
         >
           Logout
         </Link>
-      </Box>
-      <Box
-        display="flex"
+      </Flex>
+      <Flex
         flexDir="column"
         alignItems="center"
         justifyContent="center"
@@ -114,7 +112,7 @@ export const Feed: React.FC = () => {
             />
           ))}
         </Box>
-      </Box>
+      </Flex>
     </>
   );
 };
