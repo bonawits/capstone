@@ -14,7 +14,7 @@ export const Login: React.FC = () => {
         flexDir="column"
         alignItems="center"
         justifyContent="center"
-        border="3px solid black"
+        border="3px dashed black"
         borderRadius="10px"
         p="2rem"
       >
