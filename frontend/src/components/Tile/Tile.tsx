@@ -2,10 +2,13 @@ import React from "react";
 import { Box, ButtonGroup, Button, Image } from "@chakra-ui/core";
 import { UserPost } from "../../types/UserPost";
 
-interface TileProps extends UserPost {}
+interface TileProps extends UserPost {
+  onEdit: () => void;
+  onDelete: () => void;
+}
 
 export const Tile: React.FC<TileProps> = ({ ...props }) => {
-  const { postId, createdAt, caption, attachmentUrl } = props;
+  const { postId, createdAt, caption, attachmentUrl, onEdit, onDelete } = props;
   return (
     <Box maxWidth="350px" border="3px black solid" mt="2rem" p="1rem">
       <Box
@@ -22,9 +25,7 @@ export const Tile: React.FC<TileProps> = ({ ...props }) => {
             leftIcon="edit"
             variantColor="blue"
             variant="outline"
-            onClick={() => {
-              console.log("edit clicked");
-            }}
+            onClick={onEdit}
           >
             Edit
           </Button>
@@ -32,9 +33,7 @@ export const Tile: React.FC<TileProps> = ({ ...props }) => {
             leftIcon="delete"
             variantColor="red"
             variant="outline"
-            onClick={() => {
-              console.log("delete clicked");
-            }}
+            onClick={onDelete}
           >
             Delete
           </Button>

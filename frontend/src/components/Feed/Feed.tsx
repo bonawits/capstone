@@ -2,14 +2,37 @@ import React from "react";
 import { Box, Link, Heading } from "@chakra-ui/core";
 import { Tile } from "../Tile";
 
-const mockTile = () => (
-  <Tile
-    postId="1234"
-    createdAt="07/08/2020"
-    caption="mock post"
-    attachmentUrl="https://images.unsplash.com/photo-1591456721522-d884e5d6299b"
-  />
-);
+const mockPosts = [
+  {
+    postId: "1234",
+    createdAt: "07/08/2020",
+    caption: "pineapple",
+    attachmentUrl:
+      "https://images.unsplash.com/photo-1591456721522-d884e5d6299b",
+  },
+  {
+    postId: "224466",
+    createdAt: "17/12/2020",
+    caption: "laptop",
+    attachmentUrl:
+      "https://images.unsplash.com/photo-1593642632823-8f785ba67e45",
+  },
+  {
+    postId: "4324",
+    createdAt: "10/01/2020",
+    caption: "field",
+    attachmentUrl:
+      "https://images.unsplash.com/photo-1596805892053-7c2180568a1f",
+  },
+];
+
+const editPost = (index: number) => {
+  console.log(`post index ${index}`);
+};
+
+const deletePost = (index: number) => {
+  console.log(`delete index ${index}`);
+};
 
 export const Feed: React.FC = () => {
   return (
@@ -47,9 +70,16 @@ export const Feed: React.FC = () => {
           width={["80%", "50%"]}
           backgroundColor="red"
         >
-          {mockTile()}
-          {mockTile()}
-          {mockTile()}
+          {mockPosts.map((post, index) => (
+            <Tile
+              postId={post.postId}
+              createdAt={post.createdAt}
+              caption={post.caption}
+              attachmentUrl={post.attachmentUrl}
+              onEdit={() => editPost(index)}
+              onDelete={() => deletePost(index)}
+            />
+          ))}
         </Box>
       </Box>
     </>
