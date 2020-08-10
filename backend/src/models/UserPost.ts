@@ -3,4 +3,5 @@ export interface UserPost {
   postId: string;
   caption: string;
   attachmentUrl?: string;
+  createdAt: string;
 }

@@ -60,6 +60,7 @@ export const Feed: React.FC<FeedProps> = ({ auth, history }) => {
     <>
       {isNewPostModalOpen && (
         <NewPostModal
+          auth={auth}
           isOpen={isNewPostModalOpen}
           onCancel={() => {
             setIsNewPostModalOpen(false);

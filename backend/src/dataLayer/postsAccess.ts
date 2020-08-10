@@ -2,6 +2,8 @@ import { UserPost } from "../models/UserPost";
 import * as AWS from "aws-sdk";
 import { DocumentClient } from "aws-sdk/clients/dynamodb";
 import { createLogger } from "../utils/logger";
+import { CreatePostRequest } from "../requests/CreatePostRequest";
+import uuid from "uuid/v4";
 
 const logger = createLogger("postsAccess");
 
@@ -31,5 +33,27 @@ export class PostsAccess {
       .promise();
 
     return result.Items as UserPost[];
+  }
+
+  async createPost(
+    request: CreatePostRequest,
+    userId: string
+  ): Promise<UserPost> {
+    const newId = uuid();
+    const item: UserPost = {
+      userId: userId,
+      postId: newId,
+      createdAt: new Date().toISOString(),
+      caption: request.caption,
+    };
+
+    await this.docClient
+      .put({
+        TableName: this.postsTable,
+        Item: item,
+      })
+      .promise();
+
+    return item;
   }
 }
