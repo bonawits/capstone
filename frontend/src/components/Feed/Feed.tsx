@@ -4,6 +4,7 @@ import { Tile } from "../Tile";
 import { DeleteModal } from "../DeleteModal/DeleteModal";
 import { NewPostModal } from "../NewPostModal";
 import Auth from "../../auth/Auth";
+import { getPosts } from "../../api/capstone-api";
 
 export interface FeedProps {
   auth: Auth;
@@ -39,6 +40,15 @@ const editPost = (index: number) => {
 };
 
 export const Feed: React.FC<FeedProps> = ({ auth, history }) => {
+  React.useEffect(() => {
+    const fetchPosts = async () => {
+      const posts = await getPosts(auth.getIdToken());
+      setPosts(posts);
+    };
+    fetchPosts();
+  }, []);
+
+  const [posts, setPosts] = React.useState<any[]>([]);
   const [deletePostIndex, setDeletePostIndex] = React.useState<number | null>(
     null
   );
