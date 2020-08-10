@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Box, Heading } from "@chakra-ui/core";
+import { Flex, Heading } from "@chakra-ui/core";
 
 export const NotFound: React.FC = () => {
   return (
