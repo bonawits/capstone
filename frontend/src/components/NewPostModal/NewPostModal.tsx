@@ -15,22 +15,40 @@ import {
   FormHelperText,
   Flex,
 } from "@chakra-ui/core";
+import Auth from "../../auth/Auth";
+import { createPost, getUploadUrl, uploadFile } from "../../api/capstone-api";
 
 interface NewPostModalProps {
+  auth: Auth;
   isOpen: boolean;
   onCancel: () => void;
 }
 
 export const NewPostModal: React.FC<NewPostModalProps> = ({
+  auth,
   isOpen,
   onCancel,
 }) => {
   const maxCaptionLength = 60;
   const [caption, setCaption] = React.useState<string>("");
   const [captionLength, setCaptionLength] = React.useState<number>(0);
-  const [imageFile, setImageFile] = React.useState<File>();
+  const [imageFile, setImageFile] = React.useState<any>();
 
-  console.log(imageFile);
+  const onPostCreate = async () => {
+    try {
+      if (imageFile && caption) {
+        const tokenId = auth.getIdToken();
+        const newPost = await createPost(tokenId, {
+          caption,
+        });
+        const attachmentUrl = await getUploadUrl(tokenId, newPost.postId);
+        await uploadFile(attachmentUrl, imageFile);
+        alert("File was uploaded!");
+      }
+    } catch {
+      alert("Post creation failed");
+    }
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onCancel}>
@@ -80,7 +98,7 @@ export const NewPostModal: React.FC<NewPostModalProps> = ({
           <Button
             variantColor="green"
             onClick={() => {
-              console.log("new post confirm");
+              onPostCreate();
             }}
             isDisabled={captionLength === 0 || !imageFile}
           >
