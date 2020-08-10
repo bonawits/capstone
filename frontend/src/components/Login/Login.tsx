@@ -1,7 +1,12 @@
 import React from "react";
 import { Flex, Box, Heading, Button } from "@chakra-ui/core";
+import Auth from "../../auth/Auth";
 
-export const Login: React.FC = () => {
+export interface LoginProps {
+  auth: Auth;
+}
+
+export const Login: React.FC<LoginProps> = ({ auth }) => {
   return (
     <Flex
       flexDir="column"
@@ -20,10 +25,7 @@ export const Login: React.FC = () => {
       >
         <Heading as="h1">Capstone Project</Heading>
         <Box mt="1rem">
-          <Button
-            variantColor="green"
-            onClick={() => console.log("login clicked")}
-          >
+          <Button variantColor="green" onClick={() => auth.login()}>
             Login
           </Button>
         </Box>
