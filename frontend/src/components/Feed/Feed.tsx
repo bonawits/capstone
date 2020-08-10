@@ -3,6 +3,12 @@ import { Flex, Box, Link, Heading, Button } from "@chakra-ui/core";
 import { Tile } from "../Tile";
 import { DeleteModal } from "../DeleteModal/DeleteModal";
 import { NewPostModal } from "../NewPostModal";
+import Auth from "../../auth/Auth";
+
+export interface FeedProps {
+  auth: Auth;
+  history: any;
+}
 
 const mockPosts = [
   {
@@ -32,7 +38,7 @@ const editPost = (index: number) => {
   console.log(`post index ${index}`);
 };
 
-export const Feed: React.FC = () => {
+export const Feed: React.FC<FeedProps> = ({ auth, history }) => {
   const [deletePostIndex, setDeletePostIndex] = React.useState<number | null>(
     null
   );
@@ -81,13 +87,7 @@ export const Feed: React.FC = () => {
         >
           New Post
         </Button>
-        <Link
-          onClick={() => {
-            console.log("logout clicked");
-          }}
-        >
-          Logout
-        </Link>
+        <Link onClick={() => auth.logout()}>Logout</Link>
       </Flex>
       <Flex
         flexDir="column"
