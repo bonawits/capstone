@@ -1,5 +1,5 @@
 service:
-  name: serverless-todo-app
+  name: serverless-capstone-app
 
 plugins:
   - serverless-webpack
@@ -18,7 +18,7 @@ provider:
   region: ${opt:region, 'us-east-1'}
 
   environment:
-    POSTS_TABLE: Todos-${self:provider.stage}
+    POSTS_TABLE: Capstone-posts-${self:provider.stage}
     USER_ID_INDEX: UserIdIndex
     INDEX_NAME: IndexName
     IMAGES_S3_BUCKET: sloane-udacity-capstone-project-${self:provider.stage}
