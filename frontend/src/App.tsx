@@ -12,11 +12,7 @@ export interface AppProps {
 }
 
 const App: React.FC<AppProps> = ({ auth, history }) => {
-  console.log(auth);
-
   const generatePage = () => {
-    console.log(history);
-
     if (!auth.isAuthenticated()) {
       return <Login auth={auth} />;
     }
