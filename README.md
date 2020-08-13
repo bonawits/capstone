@@ -4,20 +4,6 @@ This project is a simple photo upload app using AWS Lambda and Serverless framew
 
 User photos are stored in an S3 Bucket on AWS
 
-## Front End
-
-The front end uses React and Typescript.
-
-To run the front end
-
-```
-cd frontend
-npm install
-npm run start
-```
-
-This should start a development server with the React application that will interact with the serverless Capstone Project application.
-
 ## Back End
 
 The back end uses AWS Lambda and Serverless framework.
@@ -29,3 +15,17 @@ cd backend
 npm install
 sls deploy -v
 ```
+
+## Front End
+
+The front end uses React and Typescript.
+
+To run a front end first edit the client/src/config.ts file to set correct parameters. And then run the following commands:
+
+```
+cd frontend
+npm install
+npm run start
+```
+
+This should start a development server with the React application that will interact with the serverless Capstone Project application.
