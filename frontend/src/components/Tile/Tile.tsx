@@ -38,7 +38,7 @@ export const Tile: React.FC<TileProps> = ({ ...props }) => {
             aria-label="Delete post"
             icon="star"
             variantColor={favourite ? "yellow" : "grey"}
-            variant="outline"
+            variant={favourite ? "solid" : "outline"}
             onClick={onEdit}
           />
         </Flex>

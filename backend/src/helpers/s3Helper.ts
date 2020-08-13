@@ -14,8 +14,8 @@ export class S3Helper {
     }),
     private readonly signedUrlExpireSeconds = 60 * 5
   ) {}
-  async getTodoAttachmentUrl(postId: string): Promise<string> {
-    logger.info(`getTodoAttachmentUrl invoked for todo ${postId}`);
+  async getPostAttachmentUrl(postId: string): Promise<string> {
+    logger.info(`getPostAttachmentUrl invoked for post ${postId}`);
     try {
       await this.s3
         .headObject({

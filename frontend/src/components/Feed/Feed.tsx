@@ -71,12 +71,12 @@ export const Feed: React.FC<FeedProps> = ({ auth, history }) => {
       <Flex
         flexDirection="row"
         justifyContent="space-between"
-        alignItems="baseline"
+        alignItems="center"
         p="1rem"
         borderBottom="3px dashed black"
       >
         <Heading as="h1" size="sm">
-          Capstone Project
+          Capstone <br /> Project
         </Heading>
         <Button
           leftIcon="add"

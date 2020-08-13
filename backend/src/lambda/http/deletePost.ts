@@ -10,7 +10,7 @@ import { PostsAccess } from "../../dataLayer/postsAccess";
 import { createLogger } from "../../utils/logger";
 import { getUserId } from "../utils";
 
-const logger = createLogger("deleteTodo");
+const logger = createLogger("deletePost");
 
 export const handler: APIGatewayProxyHandler = async (
   event: APIGatewayProxyEvent

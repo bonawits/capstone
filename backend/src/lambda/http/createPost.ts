@@ -9,7 +9,7 @@ import { getUserId } from "../utils";
 import { PostsAccess } from "../../dataLayer/postsAccess";
 import { createLogger } from "../../utils/logger";
 
-const logger = createLogger("createTodo");
+const logger = createLogger("createPost");
 
 export const handler: APIGatewayProxyHandler = async (
   event: APIGatewayProxyEvent
