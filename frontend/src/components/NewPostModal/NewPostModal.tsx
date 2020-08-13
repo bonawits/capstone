@@ -22,12 +22,14 @@ interface NewPostModalProps {
   auth: Auth;
   isOpen: boolean;
   onCancel: () => void;
+  onConfirm: () => void;
 }
 
 export const NewPostModal: React.FC<NewPostModalProps> = ({
   auth,
   isOpen,
   onCancel,
+  onConfirm,
 }) => {
   const maxCaptionLength = 60;
   const [caption, setCaption] = React.useState<string>("");
@@ -43,10 +45,9 @@ export const NewPostModal: React.FC<NewPostModalProps> = ({
         });
         const attachmentUrl = await getUploadUrl(tokenId, newPost.postId);
         await uploadFile(attachmentUrl, imageFile);
-        alert("File was uploaded!");
       }
-    } catch {
-      alert("Post creation failed");
+    } catch (e) {
+      console.error(e);
     }
   };
 
@@ -97,8 +98,9 @@ export const NewPostModal: React.FC<NewPostModalProps> = ({
           </Button>
           <Button
             variantColor="green"
-            onClick={() => {
-              onPostCreate();
+            onClick={async () => {
+              await onPostCreate();
+              onConfirm();
             }}
             isDisabled={captionLength === 0 || !imageFile}
           >
