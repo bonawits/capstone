@@ -7,8 +7,10 @@ import {
   APIGatewayProxyHandler,
 } from "aws-lambda";
 import { createLogger } from "../../utils/logger";
+import { S3Helper } from "../../helpers/s3Helper";
 
-const logger = createLogger("getTodos");
+const logger = createLogger("getPosts");
+const s3Helper = new S3Helper();
 
 export const handler: APIGatewayProxyHandler = async (
   event: APIGatewayProxyEvent
@@ -16,7 +18,11 @@ export const handler: APIGatewayProxyHandler = async (
   const user = getUserId(event);
   const items = await getAllPosts(user);
 
-  logger.info(`create group for user ${user}`);
+  logger.info(`get posts for user for user ${user}`);
+
+  for (const item of items) {
+    item.attachmentUrl = await s3Helper.getTodoAttachmentUrl(item.postId);
+  }
 
   return {
     statusCode: 200,

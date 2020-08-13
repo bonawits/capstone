@@ -1,5 +1,6 @@
 import React from "react";
 import { Flex, Box, IconButton, Image } from "@chakra-ui/core";
+import dateFormat from "dateformat";
 import { UserPost } from "../../types/UserPost";
 
 interface TileProps extends UserPost {
@@ -13,7 +14,7 @@ export const Tile: React.FC<TileProps> = ({ ...props }) => {
     <Box maxWidth="350px" border="3px black solid" mt="2rem" p="1rem">
       <Flex justifyContent="space-between" alignItems="cwenter" mb="1rem">
         <Box display="flex" alignItems="center">
-          {createdAt}
+          {dateFormat(createdAt, "yyyy-mm-dd hh:MM") as string}
         </Box>
 
         <IconButton

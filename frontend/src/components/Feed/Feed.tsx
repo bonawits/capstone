@@ -41,12 +41,13 @@ const editPost = (index: number) => {
 
 export const Feed: React.FC<FeedProps> = ({ auth, history }) => {
   React.useEffect(() => {
-    const fetchPosts = async () => {
-      const posts = await getPosts(auth.getIdToken());
-      setPosts(posts);
-    };
     fetchPosts();
   }, []);
+
+  const fetchPosts = async () => {
+    const posts = await getPosts(auth.getIdToken());
+    setPosts(posts);
+  };
 
   const [posts, setPosts] = React.useState<any[]>([]);
   const [deletePostIndex, setDeletePostIndex] = React.useState<number | null>(
@@ -64,6 +65,10 @@ export const Feed: React.FC<FeedProps> = ({ auth, history }) => {
           isOpen={isNewPostModalOpen}
           onCancel={() => {
             setIsNewPostModalOpen(false);
+          }}
+          onConfirm={() => {
+            setIsNewPostModalOpen(false);
+            fetchPosts();
           }}
         />
       )}
@@ -114,8 +119,9 @@ export const Feed: React.FC<FeedProps> = ({ auth, history }) => {
           width={["80%", "50%"]}
           backgroundColor="red"
         >
-          {mockPosts.map((post, index) => (
+          {posts.map((post, index) => (
             <Tile
+              key={post.postId}
               postId={post.postId}
               createdAt={post.createdAt}
               caption={post.caption}
