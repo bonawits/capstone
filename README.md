@@ -20,7 +20,7 @@ sls deploy -v
 
 The front end uses React and Typescript.
 
-To run a front end first edit the client/src/config.ts file to set correct parameters. And then run the following commands:
+To run the front end, first edit the frontend/src/config.ts file to set correct parameters. And then run the following commands:
 
 ```
 cd frontend
