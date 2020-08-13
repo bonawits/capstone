@@ -11,34 +11,6 @@ export interface FeedProps {
   history: any;
 }
 
-const mockPosts = [
-  {
-    postId: "1234",
-    createdAt: "07/08/2020",
-    caption: "pineapple",
-    attachmentUrl:
-      "https://images.unsplash.com/photo-1591456721522-d884e5d6299b",
-  },
-  {
-    postId: "224466",
-    createdAt: "17/12/2020",
-    caption: "laptop",
-    attachmentUrl:
-      "https://images.unsplash.com/photo-1593642632823-8f785ba67e45",
-  },
-  {
-    postId: "4324",
-    createdAt: "10/01/2020",
-    caption: "field",
-    attachmentUrl:
-      "https://images.unsplash.com/photo-1596805892053-7c2180568a1f",
-  },
-];
-
-const editPost = (index: number) => {
-  console.log(`post index ${index}`);
-};
-
 export const Feed: React.FC<FeedProps> = ({ auth, history }) => {
   React.useEffect(() => {
     fetchPosts();
