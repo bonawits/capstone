@@ -1,4 +1,4 @@
-# Capstone Project - Serverless design
+# Capstone Project - Serverless Design
 
 This project is a simple photo upload app using AWS Lambda and Serverless framework. Once logged in users can create a post by uploading a photo with a caption. Users also have the option to mark any of their posts as favoruites, they are also able to delete their posts.
 
