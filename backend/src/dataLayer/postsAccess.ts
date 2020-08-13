@@ -44,6 +44,7 @@ export class PostsAccess {
       userId: userId,
       postId: newId,
       createdAt: new Date().toISOString(),
+      favourite: false,
       caption: request.caption,
     };
 

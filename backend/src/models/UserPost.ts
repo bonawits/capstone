@@ -4,4 +4,5 @@ export interface UserPost {
   caption: string;
   attachmentUrl?: string;
   createdAt: string;
+  favourite: boolean;
 }

@@ -105,6 +105,7 @@ export const Feed: React.FC<FeedProps> = ({ auth, history }) => {
               createdAt={post.createdAt}
               caption={post.caption}
               attachmentUrl={post.attachmentUrl}
+              favourite={post.favourite}
               onEdit={() => editPost(index)}
               onDelete={() => setDeletePostIndex(index)}
             />
