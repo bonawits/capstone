@@ -4,7 +4,7 @@ import { Tile } from "../Tile";
 import { DeleteModal } from "../DeleteModal/DeleteModal";
 import { NewPostModal } from "../NewPostModal";
 import Auth from "../../auth/Auth";
-import { getPosts, deletePost } from "../../api/capstone-api";
+import { getPosts, deletePost, patchPost } from "../../api/capstone-api";
 
 export interface FeedProps {
   auth: Auth;
@@ -106,7 +106,12 @@ export const Feed: React.FC<FeedProps> = ({ auth, history }) => {
               caption={post.caption}
               attachmentUrl={post.attachmentUrl}
               favourite={post.favourite}
-              onEdit={() => editPost(index)}
+              onEdit={async () => {
+                await patchPost(auth.getIdToken(), post.postId, {
+                  favourite: !post.favourite,
+                });
+                fetchPosts();
+              }}
               onDelete={() => setDeletePostIndex(index)}
             />
           ))}

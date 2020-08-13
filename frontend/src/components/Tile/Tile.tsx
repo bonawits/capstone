@@ -9,7 +9,14 @@ interface TileProps extends UserPost {
 }
 
 export const Tile: React.FC<TileProps> = ({ ...props }) => {
-  const { createdAt, caption, attachmentUrl, favourite, onDelete } = props;
+  const {
+    createdAt,
+    caption,
+    attachmentUrl,
+    favourite,
+    onDelete,
+    onEdit,
+  } = props;
   return (
     <Box maxWidth="350px" border="3px black solid" mt="2rem" p="1rem">
       <Flex justifyContent="space-between" alignItems="cwenter" mb="1rem">
@@ -32,7 +39,7 @@ export const Tile: React.FC<TileProps> = ({ ...props }) => {
             icon="star"
             variantColor={favourite ? "yellow" : "grey"}
             variant="outline"
-            onClick={onDelete}
+            onClick={onEdit}
           />
         </Flex>
       </Flex>

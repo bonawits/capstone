@@ -3,6 +3,7 @@ import * as AWS from "aws-sdk";
 import { DocumentClient } from "aws-sdk/clients/dynamodb";
 import { createLogger } from "../utils/logger";
 import { CreatePostRequest } from "../requests/CreatePostRequest";
+import { UpdatePostRequest } from "../requests/UpdatePostRequest";
 import uuid from "uuid/v4";
 
 const logger = createLogger("postsAccess");
@@ -67,6 +68,26 @@ export class PostsAccess {
         Key: {
           userId,
           postId,
+        },
+      })
+      .promise();
+  }
+
+  async updatePost(
+    userId: string,
+    updatedPost: UpdatePostRequest,
+    postId: string
+  ) {
+    await this.docClient
+      .update({
+        TableName: this.postsTable,
+        Key: {
+          userId,
+          postId,
+        },
+        UpdateExpression: "set favourite = :f",
+        ExpressionAttributeValues: {
+          ":f": updatedPost.favourite,
         },
       })
       .promise();
