@@ -3,6 +3,7 @@ import { UserPost } from "../types/UserPost";
 import { CreatePostRequest } from "../types/CreatePostRequest";
 import Axios from "axios";
 import { UpdatePostRequest } from "../types/UpdatePostRequest";
+import { authConfig } from "../config";
 
 export async function getPosts(idToken: string): Promise<UserPost[]> {
   const response = await Axios.get(`${apiEndpoint}/posts`, {
@@ -11,7 +12,6 @@ export async function getPosts(idToken: string): Promise<UserPost[]> {
       Authorization: `Bearer ${idToken}`,
     },
   });
-  console.log("Posts:", response.data);
   return response.data.items;
 }
 
