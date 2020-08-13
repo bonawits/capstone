@@ -14,7 +14,6 @@ import {
   FormLabel,
   FormHelperText,
   Flex,
-  Spinner,
 } from "@chakra-ui/core";
 import Auth from "../../auth/Auth";
 import { Loading } from "../Loading";
