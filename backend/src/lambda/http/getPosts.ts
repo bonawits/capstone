@@ -21,7 +21,7 @@ export const handler: APIGatewayProxyHandler = async (
   logger.info(`get posts for user for user ${user}`);
 
   for (const item of items) {
-    item.attachmentUrl = await s3Helper.getTodoAttachmentUrl(item.postId);
+    item.attachmentUrl = await s3Helper.getPostAttachmentUrl(item.postId);
   }
 
   return {
