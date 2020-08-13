@@ -3,6 +3,7 @@ import { Flex, Box, Link, Heading, Button } from "@chakra-ui/core";
 import { Tile } from "../Tile";
 import { DeleteModal } from "../DeleteModal/DeleteModal";
 import { NewPostModal } from "../NewPostModal";
+import { Loading } from "../Loading";
 import Auth from "../../auth/Auth";
 import { getPosts, deletePost, patchPost } from "../../api/capstone-api";
 
@@ -13,16 +14,14 @@ export interface FeedProps {
 
 export const Feed: React.FC<FeedProps> = ({ auth, history }) => {
   React.useEffect(() => {
+    setIsLoading(true);
     fetchPosts();
+    setIsLoading(false);
   }, []);
 
   const fetchPosts = async () => {
     const posts = await getPosts(auth.getIdToken());
     setPosts(posts);
-  };
-
-  const editPost = (index: number) => {
-    console.log(index);
   };
 
   const [posts, setPosts] = React.useState<any[]>([]);
@@ -32,9 +31,11 @@ export const Feed: React.FC<FeedProps> = ({ auth, history }) => {
   const [isNewPostModalOpen, setIsNewPostModalOpen] = React.useState<boolean>(
     false
   );
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   return (
     <>
+      {isLoading && <Loading />}
       {isNewPostModalOpen && (
         <NewPostModal
           auth={auth}
@@ -42,9 +43,9 @@ export const Feed: React.FC<FeedProps> = ({ auth, history }) => {
           onCancel={async () => {
             setIsNewPostModalOpen(false);
           }}
-          onConfirm={() => {
+          onConfirm={async () => {
             setIsNewPostModalOpen(false);
-            fetchPosts();
+            await fetchPosts();
           }}
         />
       )}
@@ -52,10 +53,12 @@ export const Feed: React.FC<FeedProps> = ({ auth, history }) => {
         isOpen={deletePostIndex !== null}
         onConfirm={async () => {
           if (deletePostIndex !== null) {
+            setIsLoading(true);
             const { postId } = posts[deletePostIndex];
             await deletePost(auth.getIdToken(), postId);
             setDeletePostIndex(null);
-            fetchPosts();
+            await fetchPosts();
+            setIsLoading(false);
           }
         }}
         onCancel={() => {
@@ -107,10 +110,12 @@ export const Feed: React.FC<FeedProps> = ({ auth, history }) => {
               attachmentUrl={post.attachmentUrl}
               favourite={post.favourite}
               onEdit={async () => {
+                setIsLoading(true);
                 await patchPost(auth.getIdToken(), post.postId, {
                   favourite: !post.favourite,
                 });
-                fetchPosts();
+                await fetchPosts();
+                setIsLoading(false);
               }}
               onDelete={() => setDeletePostIndex(index)}
             />

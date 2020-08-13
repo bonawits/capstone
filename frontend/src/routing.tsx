@@ -3,7 +3,7 @@ import Auth from "./auth/Auth";
 import { Router, Route } from "react-router-dom";
 import createHistory from "history/createBrowserHistory";
 import App from "./App";
-import { Flex, Spinner } from "@chakra-ui/core";
+import { Loading } from "./components/Loading";
 const history = createHistory();
 
 const auth = new Auth(history);
@@ -23,22 +23,7 @@ export const makeAuthRouting = () => {
           path="/callback"
           render={(props) => {
             handleAuthentication(props);
-            return (
-              <Flex
-                width="100%"
-                height="100vh"
-                alignItems="center"
-                justifyContent="cemter"
-              >
-                <Spinner
-                  thickness="4px"
-                  speed="0.65s"
-                  emptyColor="gray.200"
-                  color="black.500"
-                  size="xl"
-                />
-              </Flex>
-            );
+            return <Loading />;
           }}
         />
         <Route
