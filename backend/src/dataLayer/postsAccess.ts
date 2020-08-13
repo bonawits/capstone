@@ -56,4 +56,18 @@ export class PostsAccess {
 
     return item;
   }
+
+  async deletePostById(userId: string, postId: string) {
+    logger.info(`user id: ${userId}`);
+    logger.info(`postId id: ${postId}`);
+    await this.docClient
+      .delete({
+        TableName: this.postsTable,
+        Key: {
+          userId,
+          postId,
+        },
+      })
+      .promise();
+  }
 }
