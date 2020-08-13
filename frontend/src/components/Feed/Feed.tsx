@@ -14,9 +14,12 @@ export interface FeedProps {
 
 export const Feed: React.FC<FeedProps> = ({ auth, history }) => {
   React.useEffect(() => {
-    setIsLoading(true);
-    fetchPosts();
-    setIsLoading(false);
+    const getInitalData = async () => {
+      setIsLoading(true);
+      await fetchPosts();
+      setIsLoading(false);
+    };
+    getInitalData();
   }, []);
 
   const fetchPosts = async () => {
@@ -73,7 +76,7 @@ export const Feed: React.FC<FeedProps> = ({ auth, history }) => {
         borderBottom="3px dashed black"
       >
         <Heading as="h1" size="sm">
-          Username
+          Capstone Project
         </Heading>
         <Button
           leftIcon="add"
